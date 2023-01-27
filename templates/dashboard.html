@@ -1,0 +1,4 @@
+{% for url in urls %}
+  <p>Original URL: {{ url.original_url }}</p>
+  <p>Shortened URL: <a href="{% url 'redirect_url' url.shortened_url %}">{{ url.shortened_url }}</a></p>
+{% endfor %}

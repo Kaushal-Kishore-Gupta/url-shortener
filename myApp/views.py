@@ -15,7 +15,7 @@ def create_short_url(request):
     if request.method == "POST":
         original_url = request.POST.get("original_url")
         shortened_url = ''.join(random.choices(string.ascii_letters + string.digits, k=8))
-        url = URL(original_url=original_url, shortened_url=shortened_url)
+        url = URL(user=request.user, original_url=original_url, shortened_url=shortened_url)
         url.save()
     return render(request, 'create_url.html', {'shortened_url': shortened_url})
 
@@ -62,5 +62,10 @@ def signupuser(request):
         print(username,password,email)
         return redirect('login')
     return render(request, "signup.html")
+
+@login_required(login_url='/login')
+def dashboard(request):
+    urls = URL.objects.filter(user=request.user)
+    return render(request, 'dashboard.html', {'urls': urls})
 
 

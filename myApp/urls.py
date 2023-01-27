@@ -7,5 +7,6 @@ urlpatterns = [
     path("login", views.loginuser, name="login"),
     path("logout", views.logoutuser, name="logout"),
     path("signup",views.signupuser,name="signup"),
+    path('dashboard', views.dashboard, name='dashboard'),
     path('<str:shortenedd>', views.redirect_url, name='redirect_url'),
 ]
