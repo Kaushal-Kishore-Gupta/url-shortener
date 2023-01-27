@@ -1,4 +1,9 @@
+
 {% for url in urls %}
   <p>Original URL: {{ url.original_url }}</p>
   <p>Shortened URL: <a href="{% url 'redirect_url' url.shortened_url %}">{{ url.shortened_url }}</a></p>
+  <form method="POST" action="{% url 'delete_url' url.pk %}">
+    {% csrf_token %}
+    <input type="submit" value="Delete">
+  </form>
 {% endfor %}

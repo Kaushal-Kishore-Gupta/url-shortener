@@ -69,3 +69,9 @@ def dashboard(request):
     return render(request, 'dashboard.html', {'urls': urls})
 
 
+@login_required(login_url='/login')
+def delete_url(request, pk):
+    url = URL.objects.get(pk=pk)
+    if url.user == request.user:
+        url.delete()
+    return redirect('dashboard')

@@ -8,5 +8,6 @@ urlpatterns = [
     path("logout", views.logoutuser, name="logout"),
     path("signup",views.signupuser,name="signup"),
     path('dashboard', views.dashboard, name='dashboard'),
+    path('delete/<int:pk>/', views.delete_url, name='delete_url'),
     path('<str:shortenedd>', views.redirect_url, name='redirect_url'),
 ]
